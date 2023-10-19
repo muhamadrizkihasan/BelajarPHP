@@ -1,0 +1,23 @@
+// Ambil element yang dibutuhkan
+var keyword = document.getElementById('keyword');
+var tombolcari = document.getElementById('tombol-cari');
+var container = document.getElementById('container');
+
+// Tambahkan event ketika keyword ditulis
+keyword.addEventListener('keyup', function() {
+
+    // Buat objek ajax
+    var xhr = new XMLHttpRequest();
+
+    // Cek kesiapan ajax
+    xhr.onreadystatechange = function() {
+        if( xhr.readyState == 4 && xhr.status == 200 ) {
+            container.innerHTML = xhr.responseText;
+        }
+    }
+
+    // Eksekusi ajax
+    xhr.open('GET', 'ajax/mahasiswa.php?keyword=' + keyword.value, true);
+    xhr.send();
+
+});
